@@ -1,0 +1,97 @@
+﻿@using Microsoft.AspNetCore.Http;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AlumniForum</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.js" integrity="sha512-rCVQBDU9Ny0aKLo1/B1MqgRjWEMlCL3WJ0DD6mJeK6qMZqpN9JCRxPtMQWWR9XWCMFIqlSgT4uOdwpvxWTSejw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar fixed-top bg-dark navbar-expand-lg navbar-dark" id="navbar">
+            <img src="~/Images/logo.svg" height="60" width="300" />
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" asp-controller="Home" asp-action="index">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link scroll-to" href="@Url.Action("Index","Home")#events">Programs and Events<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Home" asp-action="Alumni">Success Stories <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Home" asp-action="Posts">Alumni Posts <span class="sr-only">(current)</span></a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Home" asp-action="Info">App Info <span class="sr-only">(current)</span></a>
+                    </li>
+
+
+
+
+
+                </ul>
+
+            </div>
+
+            @{
+                if (Context.Session.GetString("Email") != null)
+                {
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                                    <ul class="nav navbar-nav navbar-right flex-grow-1">
+                                                    <li class="nav-item" style=" position: relative; top: 5px;">
+
+
+                                                        @(Context.Session.GetString("Email") == null?"": Context.Session.GetString("Email"))
+                                                      
+                                                    </li> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                                                    <li class="nav-item">
+                                                        @{
+                                                            if (Context.Session.GetString("Role") == "2")
+                                                            {
+                                                                <a class="btn btn-secondary" asp-controller="Home" asp-action="AddEvent">Add Event</a>
+                                                            }
+                                                        }
+
+                                                        <a class="btn btn-secondary" asp-controller="Home" asp-action="AddPost">Add Post</a>
+                                                        <a class="btn btn-primary" asp-controller="Home" asp-action="Logout">Logout</a>
+                                                    </li>
+                                    </ul>
+                    </div>
+
+                }
+                else
+                {
+                    <a class="btn btn-primary" id="Login" asp-controller="Home" asp-action="Login">Log in</a>
+                }
+
+            }
+
+        </nav>
+        
+    </header>
+    <div class="">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

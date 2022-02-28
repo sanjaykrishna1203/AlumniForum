@@ -1,0 +1,131 @@
+﻿
+@{
+    ViewData["Title"] = "Posts";
+}
+<div style="padding:40px;"></div>
+<div ng-app="showPostApp" ng-controller="showPostCtrl" ng-init="GetPosts()">
+    <h1 style="text-align:center; padding:20px;">Alumni Posts</h1>
+    <div class="postcard" ng-repeat="items in posts">
+        <div class="postcard-header">
+            <h2>{{items.title}}</h2>
+            <div class="postcard-info"><span class="date">{{items.createdAt | date}}</span><span class="author">| {{items.userRef.name}}, {{items.userRef.currentJob}} at {{items.userRef.currentCompany}}</span></div>
+        </div>
+        <div class="postcard-body">
+            <p>
+                &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;{{items.description}}
+            </p>
+
+
+        </div>
+    </div>
+</div>
+
+
+<style>
+
+    .postcard {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 20px;
+        gap: 1rem;
+        color: rgb(152, 162, 179);
+        font-size: 14px;
+        background: rgb(252, 252, 253);
+        box-shadow: rgb(16 24 40 / 30%) 0px 0.5px 2px;
+        border-radius: 8px;
+        max-width: 800px;
+        margin: auto;
+        margin-bottom: 20px;
+    }
+
+    .postcard-header {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .postcard-body {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+
+
+
+
+
+
+    .postcard-header h2 {
+        color: rgb(102, 112, 133);
+        font-weight: bold;
+        line-height: 18px;
+        font-size: 18px;
+        text-align: left;
+    }
+
+    .postcard-info {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        -webkit-box-align: center;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: bold;
+    }
+</style>
+
+
+<script>
+    var app = angular.module('showPostApp', []);
+    app.controller('showPostCtrl', function ($scope, $http) {
+        $scope.passmatch = null;
+        $scope.noPost = false;
+        $scope.posts = [];
+        $scope.GetPosts = function () {
+            $http({
+                cache: false,
+                url: "/Home/GetPosts",
+                method: "POST",
+                
+
+            }).then(function (data, status, headers, config) {
+                data = data.data;
+                if (data != null) {
+                    
+
+                    $scope.posts = data;
+                    $scope.noPost = false;
+
+
+
+                }
+                else {
+
+                    swal("Error", "Unable to Process Your Request", "error");
+                    $scope.pageinputs = {};
+                }
+            }, function errorCallback(response) {
+
+            });
+        }
+
+        $scope.passvalidator = function () {
+            if ($scope.pageinputs.password == $scope.pageinputs.confirmpassword) {
+                $scope.passmatch = true;
+            }
+            else {
+                $scope.passmatch = false;
+            }
+        }
+
+        $scope.FormValidator = function () {
+            if ($scope.regForm.$valid && $scope.passmatch) {
+                $scope.Register();
+            }
+            else {
+                swal("Error", "Please Fill All the Required Fields", "warning");
+            }
+        }
+    });
+</script>

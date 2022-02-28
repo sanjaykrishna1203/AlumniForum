@@ -1,0 +1,153 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+<div style="padding:40px;"></div>
+<header class="showcase">
+    <div class="content">
+        @*<img src="~/Images/front.jpg" class="logo" id="frontImg" alt="Sathyabama">*@
+        <div class="title">
+            <div class="">
+                <div class="">
+                    Welcome to The Alumni Forum
+                </div>
+            </div>
+        </div>
+        <div class="text">
+            An ultimate platform for Connecting the Alumnis'
+        </div>
+    </div>
+</header>
+
+<!-- Services -->
+<section class="services">
+    <div class="container grid-3 center">
+        <div>
+            <i class="fab fa-youtube fa-3x"></i>
+            <h3>Events</h3>
+            <p>Get Notified about the latest Events in the University</p>
+           
+        </div>
+        <div>
+            <i class="fas fa-chalkboard-teacher fa-3x"></i>
+            <h3>Alumni Stories</h3>
+            <p>See the Stories of the Successful Alumni from the Community</p>
+        </div>
+        <div>
+            <i class="fas fa-briefcase fa-3x"></i>
+            <h3>Alumni Posts</h3>
+            <p>See what your  colleagues has posted recently</p>
+        </div>
+    </div>
+</section>
+
+<hr />
+
+<div class="widget-wrap" id="events" ng-app="showPostApp" ng-controller="showPostCtrl" ng-init="GetEvents()">
+
+    <h1 style="text-align:center">Events and Programs</h1>
+    <br />
+
+    <div class="alt-vtl">
+        <div class="alt-event" ng-repeat="items in myevents">
+            <p class="date">{{items.dateAndTime | date }}</p>
+            <p class="txt">{{items.eventDescription}}</p>
+        </div>
+        <div class="alt-event right">
+            <p class="date">5th Mar 2022 7:00 PM</p>
+            <p class="txt">Workshop on Career Guidace</p>
+            <a target="_blank" href="https://www.coursera.com">https://www.coursera.com </a>
+        </div>
+        <div class="alt-event">
+            <p class="date">12 Mar 2022 6:00 PM</p>
+            <p class="txt">Training on Waste conversion</p>
+            <a target="_blank" href="https://www.udemy.com">https://www.udemy.com </a>
+        </div>
+        <div class="alt-event right">
+            <p class="date">15 Mar 2022 6:00 AM onwards</p>
+
+            <p class="txt">Virtual Hackathon</p>
+            <a target="_blank" href="https://www.coursera.com"> https://www.coursera.com</a>
+        </div>
+        <div class="alt-event">
+            <p class="date">30 Mar 2022 8:00 PM</p>
+            <p class="txt">Workshop on .NET Development</p>
+            <a target="_blank" href="https://www.udemy.com">https://www.udemy.com </a>
+        </div>
+    </div>
+
+
+</div>
+<div id="about">
+    <!-- About -->
+    <div class="about">
+        <div class="container">
+            <div class="grid-2">
+                <div class="center">
+                    <img src="~/Images/about-us.png" height="250" />
+                </div>
+                <div>
+                    <h3>About Us</h3>
+                    <p id="about">
+                        We are Envisioned to Create a beautiful and powerful platform for connecting the alumni with the students and other alumnis with the people. We are working on implementing more functionalities soon. This product will let you know abut the latest news happening in the university.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var app = angular.module('showPostApp', []);
+    app.controller('showPostCtrl', function ($scope, $http) {
+        $scope.passmatch = null;
+        $scope.noPost = false;
+        $scope.myevents = [];
+       
+        $scope.GetEvents = function () {
+            $http({
+                cache: false,
+                url: "/Home/GetEvents",
+                method: "POST",
+
+
+            }).then(function (data, status, headers, config) {
+                data = data.data;
+                if (data != null) {
+
+
+                    $scope.myevents = data;
+                    $scope.noPost = false;
+                   
+
+
+                }
+                else {
+
+                  
+                  
+                }
+            }, function errorCallback(response) {
+
+            });
+        }
+
+        $scope.passvalidator = function () {
+            if ($scope.pageinputs.password == $scope.pageinputs.confirmpassword) {
+                $scope.passmatch = true;
+            }
+            else {
+                $scope.passmatch = false;
+            }
+        }
+
+        $scope.FormValidator = function () {
+            if ($scope.regForm.$valid && $scope.passmatch) {
+                $scope.Register();
+            }
+            else {
+                swal("Error", "Please Fill All the Required Fields", "warning");
+            }
+        }
+    });
+</script>

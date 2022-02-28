@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewData["Title"] = "AddEvent";
+}
+
+
+@{
+    ViewData["Title"] = "AddPost";
+}
+
+
+
+<body class="img js-fullheight" ng-app="postApp" ng-controller="postCtrl">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="~/login-form-20/css/style.css">
+
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <h2 class="heading-section">Add Event</h2>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-8">
+                <div class="login-wrap p-0">
+
+                    <form name="postForm" class="signin-form">
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" ng-model="pageinputs.eventDescription" name="description" placeholder="Breif Your Event Here!"  required>
+                        </div>
+                        <div class="form-group">
+                            <input type="datetime-local" class="form-control" ng-model="pageinputs.dateAndTime" name="dateAndTime"  rows="5" required>
+
+                            </div>
+                        <div class="form-group">
+                            <button type="submit" ng-click="FormValidator()" class="form-control btn btn-primary submit px-3">Add</button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/login-form-20/js/bootstrap.min.js"></script>
+    <script src="~/login-form-20/js/jquery.min.js"></script>
+    <script src="~/login-form-20/js/main.js"></script>
+    <script src="~/login-form-20/js/popper.js"></script>
+
+</body>
+
+
+<script>
+    var app = angular.module('postApp', []);
+    app.controller('postCtrl', function ($scope, $http) {
+        $scope.passmatch = null;
+        $scope.Register = function () {
+            $http({
+                cache: false,
+                url: "/Home/AddEvent",
+                method: "POST",
+                params: { data: JSON.stringify($scope.pageinputs) },
+
+            }).then(function (data, status, headers, config) {
+                data = data.data;
+                if (data == true) {
+                    swal("Success", "Event Added Successfully!", "success").then(function () {
+                        window.location = '/Home/Index#events';
+                    });
+
+
+
+
+
+                }
+                else {
+
+                    swal("Error", "Unable to Process Your Request", "error");
+                    $scope.title = "";
+                    $scope.description = "";
+                }
+            }, function errorCallback(response) {
+
+            });
+        }
+
+        $scope.passvalidator = function () {
+            if ($scope.pageinputs.password == $scope.pageinputs.confirmpassword) {
+                $scope.passmatch = true;
+            }
+            else {
+                $scope.passmatch = false;
+            }
+        }
+
+        $scope.FormValidator = function () {
+            if ($scope.postForm.$valid) {
+                $scope.Register();
+            }
+            else {
+                swal("Error", "Please Fill All the Required Fields", "warning");
+            }
+        }
+    });
+</script>
+

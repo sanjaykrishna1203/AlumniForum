@@ -1,0 +1,486 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+html {
+    scroll-behavior: smooth;
+}
+html{
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: #000000;
+    background-image: linear-gradient(315deg, #000000 0%, #414141 74%);
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+h1 {
+    margin: 0;
+}
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+
+}
+
+#navbar {
+
+}
+#frontImg {
+    border-radius: 50%;
+}
+
+
+#about{
+    margin-bottom:30px;
+}
+
+/*Index start*/
+
+
+
+.showcase img {
+    
+}
+.showcase::after {
+    content: '';
+    height: 90vh;
+    width: 100%;
+    background-image: url(../Images/bg1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
+    filter: blur(5px);
+    -webkit-filter: brightness(50%);
+    transition: all 1000ms;
+    filter: brightness(50%);
+}
+/*
+.showcase:hover::after {
+    filter: blur(2px);
+    -webkit-filter: blur(2px);
+}*/
+.wrapper {
+    height: 100vh;
+    /*This part is important for centering*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.title{
+    font-size:50px !important;
+}
+
+.typing-demo {
+    width: 22ch;
+    animation: typing 2s steps(22), blink .5s step-end infinite alternate;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid;
+    font-family: monospace;
+    font-size: 2em;
+}
+
+@keyframes typing {
+    from {
+        width: 0
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent
+    }
+}
+.content {
+    position: absolute;
+    z-index: 1;
+    top: 10%;
+    left: 50%;
+
+    margin-left: -145px;
+    width: 300px;
+    height: 350px;
+    text-align: center;
+    transition: ease-in-out 3000ms;
+}
+
+    .content .logo {
+        height: 180px;
+        width: 180px;
+    }
+
+    .content .title {
+        font-size: 2.2rem;
+        margin-top: 1rem;
+    }
+
+    .content .text {
+        line-height: 1.7;
+        margin-top: 1rem;
+    }
+
+.container {
+    max-width: 960px;
+    margin: auto;
+    min-height: 100%;
+    overflow: hidden;
+    padding: 2rem 1rem;
+}
+
+.grid-3 {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-2 {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.center {
+    text-align: center;
+    margin: auto;
+}
+
+.bg-light {
+    background: #f4f4f4;
+    color: #333;
+}
+
+.bg-dark {
+    background: #333;
+    color: #f4f4f4;
+}
+
+footer {
+    padding: 2.2rem;
+}
+
+    footer p {
+        margin: 0;
+    }
+
+/* Small Screens */
+@media (max-width: 560px) {
+    .showcase::after {
+        height: 50vh;
+    }
+
+    .content {
+        top: 5%;
+        margin-top: 5px;
+    }
+
+        .content .logo {
+            height: 140px;
+            width: 140px;
+        }
+
+        .content .text {
+            display: none;
+        }
+
+    .grid-3,
+    .grid-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .services div {
+        border-bottom: #333 dashed 1px;
+        padding: 1.2rem 1rem;
+    }
+}
+
+/* Landscape */
+@media (max-height: 500px) {
+    .content .title,
+    .content .text {
+        display: none;
+    }
+
+    .content {
+        top: 0;
+    }
+}
+
+/*Index End*/
+.header {
+    text-align: center;
+    line-height: 0.8;
+    margin-bottom: 50px;
+    margin-top: 100px;
+}
+
+.header p {
+    margin: 0 auto;
+    line-height: 2;
+    color: var(--grayishBlue);
+}
+
+
+.box p,h2,img {
+    color: var(--grayishBlue);
+    text-align:center;
+}
+
+.box {
+    border-radius: 5px;
+    box-shadow: 0px 30px 40px -20px var(--grayishBlue);
+    padding: 30px;
+    margin: 20px;  
+}
+
+
+
+.cyan {
+    border-top: 3px solid var(--cyan);
+}
+.red {
+    border-top: 3px solid var(--red);
+}
+.blue {
+    border-top: 3px solid var(--blue);
+}
+.orange {
+    border-top: 3px solid var(--orange);
+}
+
+
+/* (A) TIMELINE CONTAINER */
+.alt-vtl {
+    /* (A1) RELATIVE POSITION REQUIRED TO PROPERLY POSITION THE TIMELINE */
+    position: relative;
+    /* (A2) WIDTH RESTRICTION & CENTER ON PAGE */
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+    /* (B) DRAW TIMELINE USING ::BEFORE */
+    .alt-vtl::before {
+        /* (B1) VERTICAL LINE */
+        content: "";
+        width: 5px;
+        background-color: #1da1ff;
+        /* (B2) POSITION IN THE MIDDLE */
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+    }
+
+/* (C) EVENTS */
+div.alt-event {
+    /* (C1) COSMETICS */
+    background-color: #dbf0ff;
+    border-radius: 6px;
+    /* (C2) DIMENSIONS */
+    padding: 20px 30px;
+    width: 45%;
+    margin-bottom: 10px;
+    /* (C3) POSITION - DEFAULT LEFT SIDE */
+    position: relative;
+    left: 0;
+}
+
+/* (C4) CHANGE EVENT POSITION TO RIGHT SIDE */
+div.right {
+    left: 55%;
+}
+
+/* (D) COSMETICS FOR EVENT DATE & TEXT */
+p.date {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #ff6a00;
+}
+
+p.txt {
+    margin: 10px 0 0 0;
+    color: #222;
+}
+
+/* (E) EVENT "SPEECH BUBBLE CALLOUT" */
+/* (E1) SHARED */
+div.alt-event::before, div.alt-event.right::before {
+    content: "";
+    border: 10px solid transparent;
+    position: absolute;
+}
+
+/* (E2) FOR EVENTS ON THE LEFT */
+div.alt-event::before {
+    /* (E2-1) "MAGIC TRIANGLE" */
+    border-left-color: #dbf0ff;
+    border-right: 0;
+    /* (E2-2) POSITION TRIANGLE ON THE RIGHT */
+    left: 100%;
+    top: 20%;
+}
+
+/* (E3) FOR EVENTS ON THE RIGHT */
+div.alt-event.right::before {
+    /* (E3-1) "MAGIC TRIANGLE" */
+    border-right-color: #dbf0ff;
+    border-left: 0;
+    /* (E3-2) POSITION TRIANGLE ON THE LEFT */
+    left: auto;
+    right: 100%;
+    top: 20%;
+}
+
+/* (F) EVENT CIRCLE ON TIMELINE */
+/* (F1) SHARED */
+div.alt-event::after, div.alt-event.right::after {
+    /* (F1-1) "MAGIC CIRCLE" */
+    content: "";
+    background: #fff;
+    border: 4px solid #1da1ff;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    /* (F1-2) POSITION */
+    position: absolute;
+}
+
+/* (F2) POSITION TO THE LEFT */
+div.alt-event::after {
+    top: 20%;
+    left: 108%;
+}
+
+/* (F3) POSITION TO THE RIGHT */
+div.alt-event.right::after {
+    top: 20%;
+    left: auto;
+    right: 105%;
+}
+
+/* (X) DOES NOT MATTER */
+/* PAGE & BODY */
+.btn {
+    cursor: pointer;
+    border-radius: 40px;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+
+    .btn:hover, .btn:active, .btn:focus {
+        outline: none;
+    }
+
+    .btn.btn-primary {
+        background: #fbceb5 !important;
+        border: 1px solid #fbceb5 !important;
+        color: #000 !important;
+    }
+
+        .btn.btn-primary:hover {
+            border: 1px solid #fbceb5;
+            background: transparent;
+            color: #fbceb5;
+        }
+
+        .btn.btn-primary.btn-outline-primary {
+            border: 1px solid #fbceb5;
+            background: transparent;
+            color: #fbceb5;
+        }
+
+            .btn.btn-primary.btn-outline-primary:hover {
+                border: 1px solid transparent;
+                background: #fbceb5;
+                color: #fff;
+            }
+
+/* WIDGET */
+.widget-wrap {
+    min-width: 500px;
+    padding: 30px;
+
+    background: url(../Images/event.jpg);
+    z-index: 999;
+
+    background-size: contain;
+}
+
+    .widget-wrap img{
+       
+    }
+    /* SVG */
+    #grid {
+        width: 100%;
+        height: 100px;
+        background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 512 512" width="100" xmlns="http://www.w3.org/2000/svg"><path d="M80 368H16a16 16 0 0 0-16 16v64a16 16 0 0 0 16 16h64a16 16 0 0 0 16-16v-64a16 16 0 0 0-16-16zm0-320H16A16 16 0 0 0 0 64v64a16 16 0 0 0 16 16h64a16 16 0 0 0 16-16V64a16 16 0 0 0-16-16zm0 160H16a16 16 0 0 0-16 16v64a16 16 0 0 0 16 16h64a16 16 0 0 0 16-16v-64a16 16 0 0 0-16-16zm416 176H176a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h320a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm0-320H176a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h320a16 16 0 0 0 16-16V80a16 16 0 0 0-16-16zm0 160H176a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h320a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16z" /></svg>');
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+

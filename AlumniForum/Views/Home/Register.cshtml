@@ -1,0 +1,128 @@
+﻿
+@{
+    ViewData["Title"] = "Register";
+}
+
+
+<div style="padding:25px;"></div>
+<body class="img js-fullheight" ng-app="registrationApp" ng-controller="registrationCtrl">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="~/login-form-20/css/style.css">
+
+
+    <div class="container">
+        <div class="">
+            <div class="">
+                <h2 class="heading-section text-center" style="padding-bottom:5px !important;">Alumni Forum - Registration</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-6">
+                <div class="login-wrap p-0">
+
+                    <form name="regForm" class="signin-form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Name" ng-model="pageinputs.name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Degree" ng-model="pageinputs.degree" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Year of Completion" ng-model="pageinputs.yearOfCompletion" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Current Job" ng-model="pageinputs.currentJob" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Current Company" ng-model="pageinputs.currentCompany" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Email" ng-model="pageinputs.email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" class="form-control" placeholder="Phone" ng-model="pageinputs.phone" required>
+                        </div>
+                        <div class="form-group">
+                            <input id="password-field" type="password" class="form-control" ng-model="pageinputs.password" placeholder="Password" required>
+                            <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                        </div>
+                        <div class="form-group">
+                            <input id="password-field" type="password" class="form-control" ng-change="passvalidator()" ng-model="pageinputs.confirmpassword" placeholder="Confirm Password" required>
+                            <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="form-control btn btn-primary submit px-3" ng-click="FormValidator();">Register</button>
+                        </div>
+
+                    </form>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="~/login-form-20/js/bootstrap.min.js"></script>
+    <script src="~/login-form-20/js/jquery.min.js"></script>
+    <script src="~/login-form-20/js/main.js"></script>
+    <script src="~/login-form-20/js/popper.js"></script>
+
+</body>
+
+
+<script>
+    var app = angular.module('registrationApp', []);
+    app.controller('registrationCtrl', function ($scope, $http) {
+        $scope.passmatch = null;
+        $scope.Register = function () {
+            $http({
+                cache: false,
+                url: "/Home/Register",
+                method: "POST",
+                params: { rawData: JSON.stringify($scope.pageinputs) },
+
+            }).then(function (data, status, headers, config) {
+                data = data.data;
+                if (data == true) {
+                    swal("Success", "Added Successfully, You can Login Now!", "success").then(function () {
+                        window.location = '/Home/login';
+                    });
+
+
+
+
+
+                }
+                else {
+
+                    swal("Error", "Unable to Process Your Request", "error");
+                    $scope.pageinputs = {};
+                }
+            }, function errorCallback(response) {
+
+            });
+        }
+
+        $scope.passvalidator = function () {
+            if ($scope.pageinputs.password == $scope.pageinputs.confirmpassword) {
+                $scope.passmatch = true;
+            }
+            else {
+                $scope.passmatch = false;
+            }
+        }
+
+        $scope.FormValidator = function () {
+            if ($scope.regForm.$valid && $scope.passmatch) {
+                $scope.Register();
+            }
+            else {
+                swal("Error", "Please Fill All the Required Fields", "warning");
+            }
+        }
+    });
+</script>
